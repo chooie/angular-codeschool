@@ -1,0 +1,17 @@
+<ul class="nav nav-tabs">
+  <li ng-class="{ active:panels.isSet(1) }">
+    <a ng-click="panels.setTab(1)">Description</a></li>
+  <li ng-class="{ active:panels.isSet(2) }">
+    <a ng-click="panels.setTab(2)">Specs</a></li>
+  <li ng-class="{ active:panels.isSet(3) }">
+    <a ng-click="panels.setTab(3)">Reviews</a></li>
+</ul>
+
+<product-description class="tab-pane"
+                     ng-show="panels.isSet(1)"></product-description>
+
+<product-specs class="tab-pane"
+               ng-show="panels.isSet(2)"></product-specs>
+
+<product-reviews class="tab-pane"
+                 ng-show="panels.isSet(3)"></product-reviews>

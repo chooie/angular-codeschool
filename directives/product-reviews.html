@@ -1,0 +1,81 @@
+<div class="tab-container">
+  <ul class="reviews">
+    <li ng-repeat="review in product.reviews">
+      <blockquote>
+        <strong> {{ review.stars }} Stars</strong>
+        {{ review.body }}
+        <cite class="clearfix">{{ review.author }} on
+          {{ review.createdOn | date : 'MMM dd @ h:mma' }}</cite>
+      </blockquote>
+    </li>
+  </ul>
+  <hr/>
+  <!--  Review Form -->
+  <section ng-controller="ReviewController as rc">
+    <button class="btn btn-primary"
+            type="button"
+            ng-hide="rc.active"
+            ng-click="rc.active=true">Submit a Review
+    </button>
+    <button class="btn btn-warning"
+            type="button"
+            ng-show="rc.active"
+            ng-click="rc.active=false">Close
+    </button>
+
+    <form class="review-form"
+          name="reviewForm"
+          novalidate
+          ng-show="rc.active"
+          ng-submit="reviewForm.$valid && rc.addReview(product)">
+      <!--  Live Preview -->
+      <blockquote>
+        <strong> {{ rc.review.stars }} Stars</strong>
+        {{ rc.review.body }}
+        <cite class="clearfix">—{{ rc.review.author }}</cite>
+      </blockquote>
+
+      <!--  Review Form -->
+      <h4>Submit a Review</h4>
+      <fieldset class="form-group" name="no-of-stars">
+        <label for="stars">Stars</label>
+        <select class="form-control"
+                id="stars"
+                title="Stars"
+                required
+                ng-options="stars for stars in [5,4,3,2,1]"
+                ng-model='rc.review.stars'>
+          <option value="">Rate the Product</option>
+        </select>
+      </fieldset>
+
+      <fieldset class="form-group" name="review">
+        <label for="review">Review</label>
+        <textarea class="form-control"
+                  id="review"
+                  placeholder="Write a short review of the product..."
+                  title="Review"
+                  required
+                  ng-model="rc.review.body"></textarea>
+      </fieldset>
+
+      <label for="email">Email</label>
+      <fieldset class="form-group" name="email">
+        <input type="email"
+               id="email"
+               class="form-control"
+               placeholder="someone@example.org"
+               title="Email"
+               required
+               ng-model="rc.review.author">
+      </fieldset>
+
+      <fieldset class="form-group">
+        <input type="submit"
+               class="btn btn-primary pull-right"
+               name="submit"
+               value="Submit Review">
+      </fieldset>
+    </form>
+  </section>
+</div>

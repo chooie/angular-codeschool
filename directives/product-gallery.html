@@ -1,0 +1,16 @@
+<section class='gallery' ng-show="product.images.length">
+  <div class="flex-container">
+    <picture class="picture-container">
+      <img class="main-img"
+           alt="A picture of a gem."
+           ng-src="{{ product.images[gallery.current] }}"/>
+    </picture>
+    <ul class="list-inline thumbs">
+      <li class="thumbnail img-thumbnail small-thumbnail"
+          ng-repeat="image in product.images"
+          ng-class="{ active:gallery.isActive($index) }">
+        <img ng-src="{{ image }}" ng-click="gallery.setCurrent($index)"/>
+      </li>
+    </ul>
+  </div>
+</section>
